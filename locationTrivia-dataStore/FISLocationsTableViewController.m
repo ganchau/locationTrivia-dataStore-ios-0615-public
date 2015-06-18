@@ -67,6 +67,12 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:YES];
+    [self.tableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -140,19 +146,23 @@
 }
 */
 
-
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"triviaSegue"]) {
+        NSIndexPath *ip = [self.tableView indexPathForSelectedRow];
+        FISLocation *location = self.locationsDataManager.locations[ip.row];
+        
+        FISTriviaTableViewController *triviaVC = segue.destinationViewController;
+        
+        triviaVC.trivia = location.trivia;
+    } else if ([segue.identifier isEqualToString:@"addLocationSegue"]) {
+        
+    }
 
-    NSIndexPath *ip = [self.tableView indexPathForSelectedRow];
-    FISLocation *location = self.locationsDataManager.locations[ip.row];
-
-    FISTriviaTableViewController *triviaVC = segue.destinationViewController;
-
-    triviaVC.trivia = location.trivia;
+    
 
 }
 

@@ -11,5 +11,7 @@
 @interface FISLocationsDataManager : NSObject
 
 @property (strong, nonatomic) NSMutableArray *locations;
+
 + (instancetype)sharedLocationsDataManager;
+
 @end

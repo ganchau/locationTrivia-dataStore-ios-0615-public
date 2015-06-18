@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14C1514" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SAR-7n-Hfp">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="SAR-7n-Hfp">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
@@ -38,7 +38,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="tUP-So-DAg" kind="push" id="cYc-qr-cPS"/>
+                                    <segue destination="tUP-So-DAg" kind="push" identifier="triviaSegue" id="cYc-qr-cPS"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -48,12 +48,72 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="18V-W7-rat">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="PuT-mE-U89"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="PuT-mE-U89">
+                            <connections>
+                                <segue destination="3w3-cQ-Kq0" kind="push" identifier="addLocationSegue" id="LUC-rm-gxZ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A96-Xg-9cB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="561" y="80"/>
+        </scene>
+        <!--Add Location View Controller-->
+        <scene sceneID="qa8-Il-Gqk">
+            <objects>
+                <viewController id="3w3-cQ-Kq0" customClass="FISAddLocationViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="w55-g3-RRo"/>
+                        <viewControllerLayoutGuide type="bottom" id="VTN-he-a04"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ivA-43-WOq">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YzL-Td-AC6">
+                                <rect key="frame" x="57" y="185" width="206" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Latitude" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zjW-ZZ-L33">
+                                <rect key="frame" x="57" y="228" width="206" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Longitude" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Tso-fV-fpp">
+                                <rect key="frame" x="57" y="271" width="206" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="1xA-wN-1fU" appends="YES" id="LJG-t7-f9P"/>
+                        </connections>
+                    </view>
+                    <navigationItem key="navigationItem" id="GHY-o1-Ygj">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="r7K-H7-FYu">
+                            <connections>
+                                <action selector="saveButtonTapped:" destination="3w3-cQ-Kq0" id="iYw-p7-aI0"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="latitudeTextLabel" destination="zjW-ZZ-L33" id="89p-jV-Auf"/>
+                        <outlet property="longitudeTextLabel" destination="Tso-fV-fpp" id="MdS-Nn-rwg"/>
+                        <outlet property="nameTextLabel" destination="YzL-Td-AC6" id="8ab-aT-Unv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="z40-oQ-ANb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="1xA-wN-1fU">
+                    <connections>
+                        <action selector="viewTapped:" destination="3w3-cQ-Kq0" id="ax5-0w-eik"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="1054" y="-419"/>
         </scene>
         <!--Trivia Table View Controller-->
         <scene sceneID="qct-6z-LeM">
@@ -91,7 +151,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dlz-wJ-WHX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1030" y="80"/>
+            <point key="canvasLocation" x="1054" y="280"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="r3w-FL-X3v">
